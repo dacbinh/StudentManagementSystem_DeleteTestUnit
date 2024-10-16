@@ -25,7 +25,22 @@ public class Main {
                     System.out.println(svc.getStudent(Inputter.inputString()));
                     break;
                 case 3:
-
+                    Student s = StudentService.inputStudent();
+                    try {
+                        svc.updateStudent(s.getStdId(), s);
+                    } catch (InvalidStudentException e) {
+                        System.out.println("Invalid student");
+                    }
+                    break;
+                case 4:
+                    try {
+                        svc.deleteStudent(Inputter.inputString());
+                    } catch (InvalidStudentException e) {
+                        System.out.println("Invalid student");
+                    }
+                    break;
+                default:
+                    System.exit(0);
             }
         }
     }
