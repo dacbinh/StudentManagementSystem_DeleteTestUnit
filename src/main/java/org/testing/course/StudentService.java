@@ -25,34 +25,4 @@ public class StudentService {
         this.dataMap.put(stdId, s);
     }
 
-    public static Student inputStudent() {
-        String stdId;
-        String stdName;
-        String stdClass;
-        while (true) {
-            var str = Inputter.inputString();
-            if (Student.verifyID(str)) {
-                stdId = str;
-                break;
-            }
-            System.out.println("Invalid Student ID, try again");
-        }
-        while (true) {
-            var str = Inputter.inputString();
-            if (Student.verifyName(str)) {
-                stdName = str;
-                break;
-            }
-            System.out.println("Invalid Student Name, try again");
-        }
-        while (true) {
-            var str = Inputter.inputString();
-            if (Student.verifyClass(str)) {
-                stdClass = str;
-                break;
-            }
-            System.out.println("Invalid Student Name, try again");
-        }
-        return new Student(stdId, stdName, stdClass);
-    }
 }

@@ -113,18 +113,45 @@ public class Inputter {
             return inputBoolean();
         } else return Boolean.parseBoolean(inp);
     }
+    public static Student inputStudent() {
+        String stdId;
+        String stdName;
+        String stdClass;
+        while (true) {
+            var str = Inputter.inputString();
+            if (Student.verifyID(str)) {
+                stdId = str;
+                break;
+            }
+            System.out.println("Invalid Student ID, try again");
+        }
+        while (true) {
+            var str = Inputter.inputString();
+            if (Student.verifyName(str)) {
+                stdName = str;
+                break;
+            }
+            System.out.println("Invalid Student Name, try again");
+        }
+        while (true) {
+            var str = Inputter.inputString();
+            if (Student.verifyClass(str)) {
+                stdClass = str;
+                break;
+            }
+            System.out.println("Invalid Student Name, try again");
+        }
+        return new Student(stdId, stdName, stdClass);
+    }
 }
 
 class NumberOutOfRangeException extends Exception {
-    public NumberOutOfRangeException() {
-    }
+
 }
 
 class EmptyStringException extends Exception {
 
-    public EmptyStringException() {
 
-    }
 }
 
 class InvalidCodeException extends Exception {

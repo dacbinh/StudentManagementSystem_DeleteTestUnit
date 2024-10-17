@@ -16,7 +16,7 @@ public class Main {
             switch (choice) {
                 case 1:
                     try {
-                        svc.addStudent(StudentService.inputStudent());
+                        svc.addStudent(Inputter.inputStudent());
                     } catch (InvalidStudentException e) {
                         System.out.println("Invalid student");
                     }
@@ -25,7 +25,7 @@ public class Main {
                     System.out.println(svc.getStudent(Inputter.inputString()));
                     break;
                 case 3:
-                    Student s = StudentService.inputStudent();
+                    Student s = Inputter.inputStudent();
                     try {
                         svc.updateStudent(s.getStdId(), s);
                     } catch (InvalidStudentException e) {
