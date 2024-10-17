@@ -32,8 +32,12 @@ public class FieldValidationWhiteBoxTest {
     }
 
     @Test
-    void invalidIDShouldThrowInvalidIDException() {
+    void invalidFormatIDShouldThrowInvalidIDException() {
+        assertFalse(Student.verifyID("@abc%!@2@##$"));
         assertFalse(Student.verifyID("123456"));
+        assertFalse(Student.verifyID("SE196789234"));
+        assertFalse(Student.verifyID("SE 196412"));
+        assertFalse(Student.verifyID("se196855"));
     }
 
     @Test
@@ -42,8 +46,19 @@ public class FieldValidationWhiteBoxTest {
     }
 
     @Test
+    void existedIDShouldBeInvalid() throws InvalidStudentException {
+        ss.addStudent(new Student("SE196412", "Pham Le Gia Han", "SE1837"));
+        assertFalse(Student.verifyID("SE196412"));
+    }
+
+    @Test
     void specialCharactersShouldBeInvalid() {
         assertFalse(Student.verifyName("@abc%!@2@##$"));
+    }
+
+    @Test
+    void firstCharLowerCaseShouldBeInvalid() {
+        assertFalse(Student.verifyName("nguYen thI C"));
     }
 
     @Test
@@ -54,11 +69,15 @@ public class FieldValidationWhiteBoxTest {
     @Test
     void validNameShouldBePossible() {
         assertTrue(Student.verifyName("Nguyen Van A"));
+        assertTrue(Student.verifyName("Nguyen     Van    B"));
     }
 
     @Test
     void invalidClassShouldThrowInvalidClassException() {
         assertFalse(Student.verifyClass("Class@123"));
+        assertFalse(Student.verifyClass("SE 1834"));
+        assertFalse(Student.verifyClass("SE196789234"));
+        assertFalse(Student.verifyClass("se1837"));
     }
 
     @Test
